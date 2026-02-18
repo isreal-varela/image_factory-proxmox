@@ -12,7 +12,7 @@
 │   ├── rhel-9-ks.cfg        # RHEL 9 Kickstart
 │   └── common-post.sh       # Shared post-install scripts - Currently Empty
 ├── scripts/
-│   └── common_setup.sh      # Packer provisioner script (cleanup/prep) Currently Empty
+│   └── common_setup.sh      # Packer provisioner script (cleanup/prep) 
 └── vars/
     ├── lab.pkrvars.hcl      # Infrastructure config (Git tracked)
     └── secrets.pkrvars.hcl  # Secrets (GIT IGNORED)

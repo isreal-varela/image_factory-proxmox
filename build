@@ -1,0 +1,49 @@
+#!/bin/bash
+
+# Default values
+DISTRO="rocky"
+VERSION="9"
+SIZE="small"
+VARS_DIR="vars"
+
+# Help menu
+usage() {
+  echo "Usage: $0 [-d distro] [-v version] [-s size]"
+  echo "  -d : OS Distro (rocky, rhel) - default: $DISTRO"
+  echo "  -v : OS Version (8, 9)       - default: $VERSION"
+  echo "  -s : VM Size (small, medium, large) - default: $SIZE"
+  exit 1
+}
+
+# Parse CLI flags
+while getopts "d:v:s:h" opt; do
+  case $opt in
+    d) DISTRO="$OPTARG" ;;
+    v) VERSION="$OPTARG" ;;
+    s) SIZE="$OPTARG" ;;
+    h) usage ;;
+    *) usage ;;
+  esac
+done
+
+echo "--- 🚀 Starting Packer Build ---"
+echo "Distro  : $DISTRO"
+echo "Version : $VERSION"
+echo "Size    : $SIZE"
+echo "--------------------------------"
+
+# Check if var files exist
+if [ ! -f "$VARS_DIR/lab.pkrvars.hcl" ] || [ ! -f "$VARS_DIR/secrets.pkrvars.hcl" ]; then
+    echo "❌ Error: Missing variable files in $VARS_DIR/"
+    exit 1
+fi
+
+# Run Packer
+# We use -var to override the defaults with our CLI flags
+packer build \
+    -var-file="$VARS_DIR/lab.pkrvars.hcl" \
+    -var-file="$VARS_DIR/secrets.pkrvars.hcl" \
+    -var "distro=$DISTRO" \
+    -var "version=$VERSION" \
+    -var "size=$SIZE" \
+    ./builds

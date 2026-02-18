@@ -1,0 +1,10 @@
+# Packer cache and plugins
+.packer/
+crash.log
+
+# Secret variables
+*.pkrvars.hcl
+vars/secrets.pkr.hcl
+
+# OS generated files
+*.iso

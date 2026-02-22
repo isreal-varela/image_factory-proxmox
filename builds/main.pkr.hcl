@@ -71,7 +71,7 @@ source "proxmox-iso" "factory" {
 
   # Dynamic Kickstart Path
   boot_command = [
-    "<tab><up> text inst.ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/${var.distro}-${var.version}-ks.cfgrd.live.check=0<enter><wait>"
+    "<tab><up> text inst.ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/${var.distro}-${var.version}-ks.cfg rd.live.check=0<enter><wait>"
   ]
 
   # SSH for provisioning

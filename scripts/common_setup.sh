@@ -15,5 +15,5 @@ sudo find /var/log -type f -exec truncate -s 0 {} \;
 # 3. Universal History Wipe (MUST BE LAST)
 echo ">>> Clearing shell history..."
 history -c 
-sudo find / /home -name ".bash_history" -exec truncate -s 0 {} \;
-truncate -s 0 ~/.bash_history
+#sudo find / /home -name ".bash_history" -exec truncate -s 0 {} \;
+#truncate -s 0 ~/.bash_history
